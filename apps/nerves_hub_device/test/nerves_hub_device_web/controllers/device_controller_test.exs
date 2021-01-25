@@ -30,12 +30,5 @@ defmodule NervesHubDeviceWeb.DeviceControllerTest do
       conn = get(conn, Routes.device_path(conn, :update))
       assert json_response(conn, 200)["data"]["update_available"]
     end
-
-    test "last used is updated", %{conn: conn, device: device} do
-      [%{last_used: last_used}] = Devices.get_device_certificates(device)
-      get(conn, Routes.device_path(conn, :me))
-      [%{last_used: updated_last_used}] = Devices.get_device_certificates(device)
-      assert last_used != updated_last_used
-    end
   end
 end
